@@ -68,13 +68,13 @@ function createMarkup(arr) {
   return arr
     .map(
       ({ id, img, name, price, description }) => `
-      <li class="product-card js-product" data-id="${id}">
-          <img src="${img}" alt="${name}" class="product-img"/>
-          <h2 class="product-title">${name}</h2>
-          <p class="product-description">${description}</p>
-          <p class="product-price">${price} грн</p>
-          <button class="product-add-btn js-add">Add to basket</button>
-      </li>
+  <li class="product-card js-product" data-id="${id}">
+    <img class="product-img" src="${img}" alt="${name}" />
+    <h2 class="product-title">${name}</h2>
+    <p class="product-description">${description}</p>
+    <p class="product-price">${price} грн</p>
+    <button class="product-add-btn js-add">Add to basket</button>
+  </li>
   `
     )
     .join("");
@@ -101,3 +101,48 @@ function handlerAdd(event) {
 
   localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(products));
 }
+
+// const PRODUCT_LS_KEY = "basket";
+
+// const container = document.querySelector(".js-list");
+
+// container.insertAdjacentHTML("beforeend", createMarkup(instruments));
+// container.addEventListener("click", handlerAdd);
+
+// function createMarkup(arr) {
+//   return arr
+//     .map(
+//       ({ id, img, name, price, description }) => `
+//       <li class="product-card js-product" data-id="${id}">
+//           <img src="${img}" alt="${name}" class="product-img"/>
+//           <h2 class="product-title">${name}</h2>
+//           <p class="product-description">${description}</p>
+//           <p class="product-price">${price} грн</p>
+//           <button class="product-add-btn js-add">Add to basket</button>
+//       </li>
+//   `
+//     )
+//     .join("");
+// }
+
+// function handlerAdd(event) {
+//   if (!event.target.classList.contains("js-add")) {
+//     return;
+//   }
+
+//   const parent = event.target.closest(".js-product");
+//   const productId = Number(parent.dataset.id);
+//   const currentProduct = instruments.find(({ id }) => id === productId);
+
+//   const products = JSON.parse(localStorage.getItem(PRODUCT_LS_KEY)) || [];
+//   const index = products.findIndex(({ id }) => id === productId);
+
+//   if (index === -1) {
+//     currentProduct.qty = 1;
+//     products.push(currentProduct);
+//   } else {
+//     products[index].qty += 1;
+//   }
+
+//   localStorage.setItem(PRODUCT_LS_KEY, JSON.stringify(products));
+// }
